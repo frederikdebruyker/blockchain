@@ -7,17 +7,31 @@ class Block{
     //    timestamp: when was this created
     //    data
     //    previous_hash: which block comes before this one
-    this.index = index;
-    this.timestamp = timestamp;
-    this.data = data;
-    this.previous_hash = previous_hash;
-    this.hash = this.calculate_hash();
+    //    nonce: field required to mine - avoiding eternal loop
+        this.index = index;
+        this.timestamp = timestamp;
+        this.data = data;
+        this.previous_hash = previous_hash;
+        this.hash = this.calculate_hash();
+        this.nonce = 0;
     }
 
     // calculate_hash method
     calculate_hash(){
-        return SHA256(this.index + this.previous_hash + this.timestamp + JSON.stringify(this.data)).toString();
+        return SHA256(this.index + this.previous_hash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString();
         // toString to ensure we have a string instead of an object
+    }
+
+    // method mineBlock
+    // to create better security, only hashes with a 'difficulty' number of zeros will be accepted
+    // the higher the difficulty, the higher the processing required
+    mineBlock(difficulty){
+        while(this.hash.substring(0,difficulty) !== Array(difficulty + 1).join('0')){
+            this.nonce++;
+            this.hash = this.calculate_hash();
+
+        }
+        console.log('Block mined : ' + this.hash);
     }
 }
 
@@ -25,6 +39,7 @@ class Blockchain{
     // constructor method
     constructor(){
         this.chain = [this.createGenesisBlock()]; // array of blocks
+        this.difficulty = 5;
     }
 
     // createGenesisBlock method
@@ -45,6 +60,7 @@ class Blockchain{
         newBlock.previous_hash = this.getLatestBlock().hash;
         // create new hash
         newBlock.hash = newBlock.calculate_hash();
+        newBlock.mineBlock(this.difficulty);
         // add new block
         this.chain.push(newBlock);
     }
@@ -70,7 +86,9 @@ class Blockchain{
 // test functionality
 let fdCoin = new Blockchain();
 // note that Genesis block is fixed
+console.log('Mining Block 1 : ');
 fdCoin.addBlock(new Block(1,Date.now(),{ amount: 200 , currency: 'USD' }));
+console.log('Mining Block 2 : ');
 fdCoin.addBlock(new Block(2,Date.now(),{ amount: 210 , currency: 'USD' }));
 
 console.log(JSON.stringify(fdCoin,null,4));
