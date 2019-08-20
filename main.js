@@ -48,6 +48,23 @@ class Blockchain{
         // add new block
         this.chain.push(newBlock);
     }
+
+    // validate chain
+    validateChain(){
+        for(let i = 1; i < this.chain.length; i++){
+            // the previous hash of current record has to line up with the hash of the previous record
+            const currentBlock = this.chain[i];
+            const previousBlock = this.chain[i-1];
+            if(currentBlock.previous_hash !== previousBlock.hash){
+                return false;
+            }
+            // recreate hash to ensure it has not changed
+            if(currentBlock.hash !== currentBlock.calculate_hash()){
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 // test functionality
@@ -57,3 +74,4 @@ fdCoin.addBlock(new Block(1,Date.now(),{ amount: 200 , currency: 'USD' }));
 fdCoin.addBlock(new Block(2,Date.now(),{ amount: 210 , currency: 'USD' }));
 
 console.log(JSON.stringify(fdCoin,null,4));
+console.log('blockchain valid : ' + fdCoin.validateChain());
