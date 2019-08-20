@@ -11,3 +11,9 @@ https://www.youtube.com/watch?v=HneatE69814
 ## JS blockchain
 For hash function, need to install crypto-js library for SHA256: npm install --save crypto-js
 
+Functionality includes:
+- Block definition
+- Block chain definition
+- Block chain validation
+- Proof-of-Work (= mining) with 'difficulty' for increased security
+
