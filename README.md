@@ -27,4 +27,4 @@ Functionality includes:
 - Transactions from / to
 - Signing transactions
 
-Run: in terminal window: in directory of development object: node <development object with extension>
+Run: in terminal window: in directory of development object: **node development object with extension**
