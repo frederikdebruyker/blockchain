@@ -3,6 +3,7 @@ https://github.com/frederikdebruyker/blockchain
 ## Interesting Links
 ### Principle
 https://youtu.be/SSo_EIwHSd4
+http://adilmoujahid.com/posts/2018/03/intro-blockchain-bitcoin-python/
 
 ### Code in JS
 Part 1: https://www.youtube.com/watch?v=zVqczFZr124
@@ -18,6 +19,7 @@ Part 4 : https://www.youtube.com/watch?v=kWQ84S13-hw
 - For hash function, need to install crypto-js library for SHA256: npm install --save crypto-js
 - For signing function, need to install elliptic library: npm install elliptic
 ### Development object(s)
+created through command prompt: **code `<development object with extension>`** 
 - blockchainBasics.js
 - blockchainTransactions.js
 - blockchain.js
@@ -31,3 +33,8 @@ Part 4 : https://www.youtube.com/watch?v=kWQ84S13-hw
 - Signing transactions (with class modularization)
 ### Run
 In terminal window: in directory of development object: **node `<development object with extension>`**
+
+## Python blockchain
+Use of jupyter notebook (command prompt: **jupyter notebook**)
+### Libraries
+

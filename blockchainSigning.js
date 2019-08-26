@@ -9,7 +9,7 @@ const myWalletAddress = myKey.getPublic('hex');
 let fdCoin = new Blockchain();
 
 // payments
-const tx1 = new Transaction(myWalletAddress,'someone else public key',199);
+const tx1 = new Transaction(myWalletAddress,'someone else public key',100);
 tx1.signTransaction(myKey);
 fdCoin.addTransactions(tx1);
 console.log(JSON.stringify(fdCoin,null,4));
